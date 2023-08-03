@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Python - Jose Bardales Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.image-container {
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Jose F. Bardales Portfolio</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="regression.html" class="active">Regression Analysis</a></li>
+						<li><a href="forecasting.html">Forecasting</a></li>
+						<li><a href="generic.html">SQL</a></li>
+						<li><a href="python.html">Python</a></li>
+						<li><a href="tableau.html">Tableau</a></li>
+					</ul>
+				</nav>
+			</header>
+
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+			<div style="display: flex; justify-content: center;">
+            <h2 class="major">Regression analysis to reduce poverty and violence in Honduras</h2>
+            <div style="display: flex; justify-content: center;">
+                <div class="image-container">
+                    <img src="https://logos-world.net/wp-content/uploads/2021/10/Python-Symbol.png" alt="" style="max-width: 300px;" />
+                </div>
+				</div>
+            </div>
+			<div class="table-of-contents">
+				<h2>Table of Contents</h2>
+				<ul>
+					<li><a href="#introduction">Introduction</a></li>
+					<li><a href="#procedure">Procedure</a></li>
+					<li><a href="#results">Results</a></li>
+					<li><a href="#conclusions">Conclusions</a></li>
+				</ul>
+			</div>
+			<h2 class="major" id="introduction">Introduction</h2>
+			<p style="text-align: left;">
+				In this project, I downloaded multiple datasets from <a href="https://ourworldindata.org/" target="_blank">Our World in Data</a>, these datasets are related to the following topics:
+			</p>
+			<ol style="text-align: left;">
+				<li>Poverty - Share Below $1 and $2.15 a day.</li>
+				<li>Economy - GDP per capita</li>
+				<li>Education - Education Spending</li>
+				<li>Electricity - Urban and Rural access to electricity</li>
+				<li>Tourism - Tourists</li>
+				<li>Internet - Internet Users</li>
+				<li>Renewable Energy - Renewable electricity share</li>
+				<li>Violence - Homicides</li>
+				<li>Health Spending - Health Spending</li>
+				<li>Agricultural Land - Agricultural land hectares</li>
+			</ol>
+            <p style="text-align: left;">
+				<h2 class="major" id="procedure">Procedure</h2>
+                First, I had to import and merge the Data: 
+		            </p>
+			<img src="images\Step1.png" alt=""/>
+			<p style="text-align: left;">
+                Once I imported all the different datasets I downloaded, I realized I had not cleaned them, first, I joined them on Entity and Year, then, upon closer inspection it appeared that by filtering for the years 1990 and 2021 the data would be clean for my purposes. 
+		            </p>
+			<img src="images\Step2.png" alt="" />	
+			<p style="text-align: left;">
+                Having my Data ready for processing, I decided to create a heatmap of correlations to easily identify which values were higher and for an overall view of correlations.
+		            </p>	
+			<img src="images\Step3.png" alt=""/>	
+			<img src="images\CorrelationMatrix.png" alt=""/>	
+			<p style="text-align: left;">
+                As you can see, the heat map clearly indicate hotter or redder values, I could quickly identify how both rural access to electricity and internet users are correlated.
+		            </p>	
+					<p style="text-align: left;">
+						But just in case, I decided to identify the top 5 correlations which were GDP per capita, Year, homicides, Internet users, and rural access to electricity.
+							</p>
+							<p style="text-align: left;">
+								<h2 class="major" id="results">Results</h2>
+								With this, we can now go unto the regression analysis, first we will analyze poverty:
+									</p>
+									<img src="images\RegressionAnalysis1.png" alt=""/>	
+									<p style="text-align: center;">
+										<p style="text-align: center; font-weight: bold;">
+											You might now be asking yourself, "Ok, what do these numbers mean?"
+										</p>
+													</p>
+													<p style="text-align: left;">
+														A R-squared value of 0.498 and an adjusted value of 0.401 implies that about 49.8% of the variability in the dependent variable is explained by the model. After adjusting the number of predictors, about 40.1% of the variability is explained.
+															</p>	
+															<p style="text-align: left;">
+																The F-statistic being 5.155 indicates that the model is statistically significant at conventional levels, suggesting that at least one of the predictors is useful in predicting the dependent variable.
+																<p style="text-align: left;">
+																	However, the individual p-values are higher than 0.05 for each column, this means that the individual values are not statistically significant, but its worth noting that the model as a whole, does have some explanatory power over the poverty rate.
+																		</p>	
+																		<p style="text-align: left;">
+																			We will now run the regression analysis on homicides in order to search for strategies to reduce violence, I obtained better results with this second analysis.
+																				</p>	
+																				<img src="images\RegressionAnalysis2.png" alt="" />
+																				<p style="text-align: left;">
+																					In this case, the value is 0.734 for R-squared which means that 73.4% of the variability in the homicide rate can be explained by the independent values in the model. This is a high value, suggesting that the model has significant explanatory power. When using the Adjusted R-squared, the value is 0.682 which is slightly lower but still a very good fit.
+																						</p>	
+																						<p style="text-align: left;">
+																							The F-statistic is 14.33 this time around, almost three times higher than that for the poverty model, suggesting that the predictors in the homicide model collectively explain more of the variation in the dependent variable. Both models are statistically significant at conventional levels, but the homicide model appears to have stronger overall explanatory power.
+																								</p>	
+																								<p style="text-align: left;">
+																									The values obtained for both urban and rural access to electricity and share below $1 a day are both statistically significant.
+																										</p>
+																										<style>
+																											.major {
+																												text-align: center;
+																											}
+																										</style>
+																										<h2 class="major"  id="conclusions">Conclusions</h2>
+																												<h4 class="major">Poverty Model</h4>
+																												<p style="text-align: left;">
+																													While the model for poverty had some explanatory power, individual predictors like "GDP per capita", "homicides", "Internet users", and "rural access to electricity percentage" were not statistically significant. This indicates that these factors, in the way they were modeled, might not be the primary drivers of poverty in Honduras based on the data analyzed.
+There's potential to further refine and improve the model by considering other variables, interactions between predictors, or alternative model specifications.
+																														</p>	
+																														<h4 class="major">Violence Model</h4>
+																														<p style="text-align: left;">
+																															The model for homicides was robust in explaining the variation in the homicide rate in Honduras. The relationship between poverty and homicides was particularly noteworthy, with a negative association observed. This suggests that addressing poverty might have implications for the homicide rate, though the nature and direction of this relationship require deeper investigation.
+Some predictors, like "urban access to electricity percentage", were significant in this model, hinting at complex socio-economic dynamics at play.
+																																</p>	
+															</div>
+    </section>
+
+</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Jose Bardales. All rights reserved.</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Jose Bardales. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
